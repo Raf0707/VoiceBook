@@ -21,11 +21,14 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textTest;
+    EditText editText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editText = (EditText) findViewById(R.id.editTextTextPersonName);
         init();
 
     }
@@ -33,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
     {
         textTest = findViewById(R.id.textTest);
     }
-    public void voiceRec(View view)
-    {
+    public void voiceRec(View view) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
@@ -52,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 case 10:
                     ArrayList<String> text =  data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    textTest.setText(text.get(0));
+                    //textTest.setText(text.get(0).toString());
+                    editText.setText(text.get(0));
                     break;
 
             }
